@@ -1,2 +1,2 @@
-# RTIL
-Randoms things i learned
+# Random Things I Learned
+
