@@ -16,6 +16,13 @@ packages/
   validation/   ← shared schemas
 ```
 
+## Advantages
+- Single codebase
+- Reusibilty
+- Full acccess or faster accesibility of full codebase
+- Avoids the duplication of the packages in isolated sub_folders
+- Utils are shared
+
 ## Things require to consider a project as a monorepo architecture
 - single repo
 - Multiple folder and packages
