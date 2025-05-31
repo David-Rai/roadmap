@@ -16,3 +16,10 @@ packages/
   validation/   ← shared schemas
 ```
 
+## Things require to consider a project as a monorepo architecture
+- single repo
+- Multiple folder and packages
+- seperate sub node modules or single root node_modules
+
+
+[example](https://github.com/david-rai/yapzone)
