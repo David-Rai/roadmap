@@ -31,13 +31,23 @@
 
 ---
 
-## Badges
+# Things I am Learning next 🚀
 
-[![GitHub followers](https://img.shields.io/github/followers/david-rai?label=Follow&style=social)](https://github.com/david-rai)
-[![GitHub stars](https://img.shields.io/github/stars/david-rai?style=social)](https://github.com/david-rai?tab=stars)
-[![GitHub repo size](https://img.shields.io/github/repo-size/david-rai?style=flat-square)](https://github.com/david-rai)
-[![GitHub issues](https://img.shields.io/github/issues/david-rai?style=flat-square)](https://github.com/david-rai/issues)
-[![GitHub forks](https://img.shields.io/github/forks/david-rai?style=flat-square)](https://github.com/david-rai/network/members)
+- [x]  Express Validator — Input validation middleware for Express.js  
+- [ ]  Express Rate Limiting — Protect APIs from abuse and DDoS attacks  
+- [ ]  Dockerization — Containerizing applications using Docker  
+- [ ]  GraphQL — Query language for APIs, alternative to REST  
+- [ ]  Auto Scaling — Automatically adjust resources based on demand  
+- [ ]  Model-View-Controller (MVC) Servers — Software design pattern  
+- [ ]  Microservice Architecture — Designing applications as a suite of small services  
+- [ ]  Scalability and Performance — Techniques to scale apps efficiently  
+- [ ]  Vertical and Horizontal Scaling — Different strategies for scaling infrastructure  
+- [ ]  CI/CD Pipelines Implementation — Automating build, test, and deploy processes  
+- [ ]  Redis for Caching — In-memory data structure store to speed up apps  
+- [ ]  Load Balancers — Distributing traffic efficiently across servers  
+- [ ]  Kubernetes — Container orchestration platform for deployment and management  
+- [ ]  AWS (Amazon Web Services) — Cloud computing platform and infrastructure  
+- [ ]  Testing Full Application with Jest — Automated testing for reliable code  
+- [ ]  Learn React Native — Building mobile applications with React  
 
----
 
