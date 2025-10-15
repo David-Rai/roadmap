@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Stack Developer Roadmap - Documentation</title>
+<link rel="icon" href="https://imgs.search.brave.com/D2HXeqHAj9vJTHT_6-2ckqL_jmIO27D59t8tSXy4SLU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvNTAwcC84/MS85NC9jb2RlLWlj/b24tc29mdHdhcmUt/c3ltYm9sLXZlY3Rv/ci0xOTM2ODE5NC5q/cGc" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #1c2128;
+            --bg-hover: #21262d;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #79c0ff;
+            --accent-tertiary: #a371f7;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --border: #30363d;
+            --success: #3fb950;
+            --warning: #d29922;
+            --shadow: rgba(1, 4, 9, 0.5);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px var(--accent-primary)); }
+            50% { filter: drop-shadow(0 0 15px var(--accent-primary)); }
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--bg-hover);
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 280px;
+            height: calc(100vh - 64px);
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            padding: 1.5rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-item:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        .sidebar-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .sidebar-item.active {
+            color: var(--accent-primary);
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .sidebar-item.active::before {
+            transform: scaleY(1);
+        }
+
+        .sidebar-icon {
+            font-size: 1.125rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+
+        /* Main Content */
+        main {
+            /* margin-left: 280px; */
+            margin-top: 64px;
+            padding: 2rem;
+            min-height: calc(100vh - 64px);
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(88, 166, 255, 0.1), transparent);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-tertiary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .hero-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-stat i {
+            font-size: 2rem;
+            color: var(--accent-primary);
+        }
+
+        .hero-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover .section-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 24px rgba(88, 166, 255, 0.3);
+        }
+
+        .section-title-wrapper {
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .section-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-header:hover .section-toggle {
+            background: var(--bg-hover);
+        }
+
+        .section-toggle i {
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .section-toggle i {
+            transform: rotate(-180deg);
+        }
+
+        .section-content {
+            display: grid;
+            gap: 1rem;
+            overflow: hidden;
+            max-height: 5000px;
+            transition: all 0.4s ease;
+        }
+
+        .section.collapsed .section-content {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        /* Technology Card */
+        .tech-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-primary);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .tech-card:hover {
+            background: var(--bg-tertiary);
+            border-color: var(--accent-primary);
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .tech-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .tech-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover .tech-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .tech-content {
+            flex: 1;
+        }
+
+        .tech-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .tech-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            padding: 0.25rem 0.625rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover .tech-tag {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        /* Tips Section */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .tip-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .tip-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(88, 166, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .tip-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-description {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            main {
+                margin-left: 0;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .search-input {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 1rem;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-input {
+                width: 150px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .backdrop {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            backdrop-filter: blur(2px);
+        }
+
+        .backdrop.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .tech-card {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="btn-icon mobile-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>Full Stack Roadmap</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="search-container"> <i class="fas fa-search search-icon"></i> <input type="text" class="search-input" id="searchInput" placeholder="Search technologies..."> </div>
+                <button class="btn-icon" title="View on GitHub" >
+                <a target="_blank" href="https://github.com/david-rai/roadmap">
+                    <i class="fab fa-github"></i>
+                </a>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <!-- <aside class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">Navigation</div>
+            <div class="sidebar-item active" data-section="overview">
+                <i class="fas fa-home sidebar-icon"></i>
+                <span>Overview</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Roadmap Phases</div>
+            <div class="sidebar-item" data-section="phase1">
+                <i class="fas fa-code sidebar-icon"></i>
+                <span>Web Fundamentals</span>
+            </div>
+            <div class="sidebar-item" data-section="phase2">
+                <i class="fab fa-react sidebar-icon"></i>
+                <span>Frontend Frameworks</span>
+            </div>
+            <div class="sidebar-item" data-section="phase3">
+                <i class="fas fa-server sidebar-icon"></i>
+                <span>Backend Development</span>
+            </div>
+            <div class="sidebar-item" data-section="phase4">
+                <i class="fas fa-mobile-alt sidebar-icon"></i>
+                <span>Real-Time & Mobile</span>
+            </div>
+            <div class="sidebar-item" data-section="phase5">
+                <i class="fas fa-tools sidebar-icon"></i>
+                <span>DevOps & Tools</span>
+            </div>
+            <div class="sidebar-item" data-section="phase6">
+                <i class="fas fa-brain sidebar-icon"></i>
+                <span>Advanced Topics</span>
+            </div>
+            <div class="sidebar-item" data-section="phase7">
+                <i class="fas fa-project-diagram sidebar-icon"></i>
+                <span>Projects to Build</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-title">Resources</div>
+            <div class="sidebar-item" data-section="tips">
+                <i class="fas fa-lightbulb sidebar-icon"></i>
+                <span>Tips & Notes</span>
+            </div>
+        </div>
+    </aside> -->
+
+    <!-- Backdrop -->
+    <div class="backdrop" id="backdrop"></div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="content-wrapper">
+            <!-- Hero Section -->
+            <section class="hero" id="overview">
+                <div class="hero-content">
+                    <h1>🚀 Full Stack Developer Roadmap</h1>
+                    <p>
+                        A comprehensive guide to becoming a modern full stack developer. This roadmap covers 
+                        frontend, backend, mobile development, DevOps, and advanced concepts with practical 
+                        technologies and tools used in the industry.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <i class="fas fa-list-check"></i>
+                            <div>
+                                <div class="hero-stat-value">50</div>
+                                <div class="hero-stat-label">Topics Covered</div>
+                            </div>
+                        </div>
+                        <div class="hero-stat">
+                            <i class="fas fa-layer-group"></i>
+                            <div>
+                                <div class="hero-stat-value">7</div>
+                                <div class="hero-stat-label">Learning Phases</div>
+                            </div>
+                        </div>
+                        <div class="hero-stat">
+                            <i class="fas fa-code-branch"></i>
+                            <div>
+                                <div class="hero-stat-value">5</div>
+                                <div class="hero-stat-label">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 1: Web Fundamentals -->
+            <section class="section" id="phase1">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 1 — Web Fundamentals</h2>
+                        <p class="section-subtitle">Master the core technologies of web development</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-html5"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">HTML5 & CSS3</div>
+                            <div class="tech-description">Learn semantic HTML structure, forms validation, CSS Flexbox and Grid layout systems for modern responsive designs.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Frontend</span>
+                                <span class="tech-tag">Essential</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Responsive Web Design</div>
+                            <div class="tech-description">Master mobile-first approach, media queries, viewport configuration, and fluid layouts for all screen sizes.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-magic"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">CSS Animations & Transitions</div>
+                            <div class="tech-description">Create smooth animations using keyframes, transforms, and transitions for enhanced user interactions.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Animation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-search"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">SEO Basics & Performance</div>
+                            <div class="tech-description">Understand meta tags, semantic HTML, Core Web Vitals, and optimization techniques for better search rankings.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">SEO</span>
+                                <span class="tech-tag">Performance</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-js"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">JavaScript (ES6+)</div>
+                            <div class="tech-description">Modern JavaScript features including modules, arrow functions, destructuring, spread operators, and template literals.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Essential</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-clock"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Promises, Async/Await, Fetch API</div>
+                            <div class="tech-description">Handle asynchronous operations, API calls, and manage promise chains for efficient data fetching.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Async</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-hand-pointer"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">DOM Manipulation & Events</div>
+                            <div class="tech-description">Master DOM traversal, element manipulation, event handling, and event delegation patterns.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">DOM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-js-square"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">TypeScript</div>
+                            <div class="tech-description">Add type safety to JavaScript with TypeScript types, interfaces, generics, and advanced type features.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Type Safety</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2: Frontend Frameworks -->
+            <section class="section" id="phase2">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #61dafb, #21a1c4);">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 2 — Frontend Frameworks</h2>
+                        <p class="section-subtitle">Build modern, reactive user interfaces</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-react"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">React.js Basics</div>
+                            <div class="tech-description">Learn React components, props, state management, and JSX syntax for building interactive UIs.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Frontend</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-anchor"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">React Hooks</div>
+                            <div class="tech-description">Master useState, useEffect, useMemo, useCallback, and custom hooks for functional components.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Hooks</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-database"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Context API & Redux Toolkit</div>
+                            <div class="tech-description">Global state management using React Context API and Redux Toolkit for complex applications.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">State Management</span>
+                                <span class="tech-tag">Redux</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-feather">
+                                                    </i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Tailwind CSS</div>
+                            <div class="tech-description">Utility-first CSS framework for rapid UI development, responsive design, and consistent styling.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">Frontend</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-link"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Next.js Basics</div>
+                            <div class="tech-description">Learn SSR, SSG, API routes, and routing patterns for React-based applications.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Next.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3: Backend Development -->
+            <section class="section" id="phase3">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ff7f50, #ff4500);">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 3 — Backend Development</h2>
+                        <p class="section-subtitle">Build and maintain server-side applications and APIs</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-node-js"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Node.js & Express.js</div>
+                            <div class="tech-description">Create REST APIs and server logic using Node.js runtime and Express framework for fast development.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Backend</span>
+                                <span class="tech-tag">API</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-database"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">MySQL & Supabase</div>
+                            <div class="tech-description">Relational and serverless databases for storing, querying, and managing structured data.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Database</span>
+                                <span class="tech-tag">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-key"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Authentication & Security</div>
+                            <div class="tech-description">Implement JWT authentication, cookies, and password hashing with bcrypt for secure access.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Security</span>
+                                <span class="tech-tag">Auth</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-cubes"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Express Rate Limiting</div>
+                            <div class="tech-description">Protect APIs from abuse and DDoS attacks using rate-limiting strategies.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Security</span>
+                                <span class="tech-tag">Backend</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">MVC Architecture</div>
+                            <div class="tech-description">Organize backend code into Models, Views, and Controllers for maintainable and scalable apps.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Backend</span>
+                                <span class="tech-tag">Architecture</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4: Real-Time & Mobile -->
+            <section class="section" id="phase4">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 4 — Real-Time & Mobile</h2>
+                        <p class="section-subtitle">Learn real-time communication and mobile app development</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-comment-dots"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">WebSockets (Socket.IO)</div>
+                            <div class="tech-description">Implement real-time, bidirectional communication for chat, notifications, or games.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Realtime</span>
+                                <span class="tech-tag">WebSocket</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-video"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">WebRTC</div>
+                            <div class="tech-description">Enable peer-to-peer audio, video, and data streaming for live communication apps.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Realtime</span>
+                                <span class="tech-tag">WebRTC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-react"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">React Native</div>
+                            <div class="tech-description">Build cross-platform mobile apps using React Native and shared JavaScript/TypeScript codebase.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Mobile</span>
+                                <span class="tech-tag">React Native</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 5: DevOps & Tools -->
+            <section class="section" id="phase5">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ffa500, #ff8c00);">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 5 — DevOps & Tools</h2>
+                        <p class="section-subtitle">Learn deployment, scalability, and productivity tools</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-database"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Redis for Caching</div>
+                            <div class="tech-description">In-memory data store to speed up applications, session storage, and caching frequently accessed data.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Caching</span>
+                                <span class="tech-tag">Redis</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-server"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Load Balancers</div>
+                            <div class="tech-description">Distribute traffic efficiently across multiple servers to handle large-scale applications.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Infrastructure</span>
+                                <span class="tech-tag">Scaling</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Monorepos & Turborepo</div>
+                            <div class="tech-description">Organize multiple projects or packages in a single repository for better maintainability and collaboration.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">DevOps</span>
+                                <span class="tech-tag">Tools</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 6: Advanced Topics -->
+            <section class="section" id="phase6">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #8a2be2, #4b0082);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 6 — Advanced Topics</h2>
+                        <p class="section-subtitle">Deep dive into architecture, testing, and cloud deployment</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-cogs"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">CI/CD Pipelines</div>
+                            <div class="tech-description">Automate testing, integration, and deployment using tools like GitHub Actions, Jenkins, or GitLab CI.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">DevOps</span>
+                                <span class="tech-tag">Automation</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fab fa-docker"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Docker & Containerization</div>
+                            <div class="tech-description">Package applications in containers for consistent environments across development, staging, and production.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">DevOps</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 6: Advanced Topics -->
+            <section class="section" id="phase6">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #8a2be2, #9400d3);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 6 — Advanced Topics</h2>
+                        <p class="section-subtitle">Explore cutting-edge technologies and practices</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-network-wired"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">GraphQL</div>
+                            <div class="tech-description">Flexible query language for APIs to fetch only required data efficiently.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">API</span>
+                                <span class="tech-tag">GraphQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">AI & Machine Learning Basics</div>
+                            <div class="tech-description">Understand ML concepts, libraries, and integration into web and mobile applications.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">AI</span>
+                                <span class="tech-tag">ML</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-lock"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Advanced Security Practices</div>
+                            <div class="tech-description">Learn OAuth, OpenID Connect, penetration testing, and secure coding practices.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Security</span>
+                                <span class="tech-tag">Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 7: Projects to Build -->
+            <section class="section" id="phase7">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #20b2aa, #2e8b57);">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Phase 7 — Projects to Build</h2>
+                        <p class="section-subtitle">Practical projects to consolidate your learning</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-blog"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Blog Platform</div>
+                            <div class="tech-description">Build a full-stack blog with authentication, CRUD operations, and comments system.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Full Stack</span>
+                                <span class="tech-tag">Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-shopping-cart"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">E-Commerce Website</div>
+                            <div class="tech-description">Develop a shopping platform with product listings, cart functionality, and payment integration.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Full Stack</span>
+                                <span class="tech-tag">Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-card">
+                        <div class="tech-icon"><i class="fas fa-comments"></i></div>
+                        <div class="tech-content">
+                            <div class="tech-title">Chat Application</div>
+                            <div class="tech-description">Create a real-time chat app using WebSockets or WebRTC for messaging and video calls.</div>
+                            <div class="tech-tags">
+                                <span class="tech-tag">Realtime</span>
+                                <span class="tech-tag">Project</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section class="section" id="tips">
+                <div class="section-header">
+                    <div class="section-icon" style="background: linear-gradient(135deg, #ff6347, #ff4500);">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="section-title-wrapper">
+                        <h2 class="section-title">Tips & Notes</h2>
+                        <p class="section-subtitle">Helpful advice for learning and growth</p>
+                    </div>
+                    <div class="section-toggle">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                </div>
+                <div class="section-content tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-book"></i></div>
+                        <div class="tip-title">Consistent Learning</div>
+                        <div class="tip-description">Dedicate daily time for learning and practicing to build strong fundamentals.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-code"></i></div>
+                        <div class="tip-title">Build Projects</div>
+                        <div class="tip-description">Apply your knowledge in real-world projects to gain practical experience and confidence.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-people-group"></i></div>
+                        <div class="tip-title">Community Engagement</div>
+                        <div class="tip-description">Join developer communities, forums, and open-source projects to learn from others and contribute.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="tip-title">Stay Updated</div>
+                        <div class="tip-description">Follow industry trends, new tools, and frameworks to remain relevant as a modern developer.</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+  <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menuToggle');
+        const backdrop = document.getElementById('backdrop');
+        const searchInput = document.getElementById('searchInput');
+        const sections = document.querySelectorAll('.section');
+        const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            backdrop.classList.toggle('active');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            backdrop.classList.remove('active');
+        });
+
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => {
+                sidebarItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                const sectionId = item.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if(section) {
+                    window.scrollTo({ top: section.offsetTop - 64, behavior: 'smooth' });
+                }
+                sidebar.classList.remove('open');
+                backdrop.classList.remove('active');
+            });
+        });
+
+        sections.forEach(section => {
+            const header = section.querySelector('.section-header');
+            const toggle = header.querySelector('.section-toggle');
+            header.addEventListener('click', () => {
+                section.classList.toggle('collapsed');
+            });
+        });
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('.tech-card').forEach(card => {
+                const title = card.querySelector('.tech-title').textContent.toLowerCase();
+                const description = card.querySelector('.tech-description').textContent.toLowerCase();
+                if(title.includes(query) || description.includes(query)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+    </body>
+    </html>
