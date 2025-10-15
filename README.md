@@ -1,6 +1,6 @@
 # 🧭 Full Stack Developer Roadmap
 
-![Full Stack Roadmap](https://imgs.search.brave.com/WoLGrDCLI1dSSi2GxhnoMYhFa6nQcH_kDU7hhKv06_c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcuZnJlZXBpay5jb20vcHJlbWl1bS12ZWN0b3Ivcm9hZG1hcC1pbmZvZ3JhcGhpYy10ZW1wbGF0ZV8xMzI3NTM3LTkxLmpwZz9zZW10PWFpc19oeWJyYWlkJnd6PTc0MCZxPTg/MA)
+![Full Stack Roadmap](https://imgs.search.brave.com/l1DTf0VQIvuAhxOy7GX8n_A3_yy454MbyhqPYGawUYQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ib3Nz/Y29kZXItYWNhZGVt/eS0yLmdob3N0Lmlv/L2NvbnRlbnQvaW1h/Z2VzLzIwMjUvMDEv/RnVsbC1TdGFjay1E/ZXZlbG9wZXItUm9h/ZG1hcC53ZWJw)
 
 A complete roadmap for **becoming a modern full stack developer**, combining frontend, backend, mobile, DevOps, and advanced concepts.  
 
